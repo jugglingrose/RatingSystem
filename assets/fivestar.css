@@ -1,0 +1,32 @@
+fieldset{
+  float: left;
+}
+
+/*
+.starRating{
+  text-align: center;
+}
+
+.starRating > input {
+  display: none;
+}
+
+.starRating > label:before{
+  display: inline-block;
+  font-family: FontAwesome;
+  content: "\f005";
+}
+
+.starRating > label{
+  color: #ddd;
+  float: right;
+}
+
+#starRate > input:checked ~ label, /* show gold star when clicked */
+#starRate:not(:checked) > label:hover, /* hover current star */
+#starRate:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+#starRate > input:checked + label:hover, /* hover current star when changing rating */
+#starRate > input:checked ~ label:hover,
+#starRate > label:hover ~ input:checked ~ label, /* lighten current selection */
+#starRate > input:checked ~ label:hover ~ label { color: #FFED85;  }
