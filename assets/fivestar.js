@@ -4,7 +4,9 @@ $(document).ready(function(){
     var data = $(this).attr('value');
     console.log(data);
     $.ajax({
-      data: data,
+      data: {
+        rating: data
+      },
       type:"POST",
       url: '/',
       error: function(jqXHR, textStatus, errorThrown){

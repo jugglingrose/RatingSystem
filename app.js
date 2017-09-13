@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 //require mongo db
 var mongo = require('mongodb');
 var MongoClient = require('mongodb').MongoClient;
+var db = null;
 
 
 //access mongo db password//
@@ -20,13 +21,24 @@ app.use(express.static('assets'));
 
 
 app.get('/', function(req,res){
-  res.render('index');
+  //get the avg of all of the reviews in the DB//
+  db.collection("starRate").aggregate([
+    {$group: {_id:null, total:{$avg:"$rating"}}}],
+    function(err,result) {
+      if (err) throw err;
+      console.log(result);
+      //round the avg//
+      var total = Math.round(result[0].total);
+      //render the avg to show on client side//
+      res.render('index',{reviewAVG: total});
+    });
 });
 
 app.post('/', function(req,res){
   console.log("post to database called");
-  console.log(db);
-  db.collection("starRate").insertOne({'rating': data}, function(err, result){
+  var rating = req.body.rating;
+  rating = parseInt(rating);
+  db.collection("starRate").insertOne({'rating': rating}, function(err, result){
     if (err) throw err;
     console.log("1 review inserted");
     res.redirect('/');
@@ -36,7 +48,7 @@ app.post('/', function(req,res){
 MongoClient.connect(config.mongo_uri, function(err, database){
   if (err) throw err;
   console.log('succesfully connected to database');
-  var db = database;
+  db = database;
   app.listen(3000, function(){
     console.log('successfully started the server');
   });
