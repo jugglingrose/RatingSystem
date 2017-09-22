@@ -10,6 +10,26 @@
       <div class="row">
         <div class="col-xs-12">
           <p> <%= reviewAVG %> Stars<p>
+            <p> <% if (reviewAVG === 5){ %>
+               FIVE. Awesome!
+               
+              <%}
+              else if (reviewAVG ===4){ %>
+                FOUR
+              <%}
+
+              else if (reviewAVG === 3){ %>
+                THREE
+              <%}
+
+              else if (reviewAVG === 2){%>
+                TWO
+              <%}
+
+              else{%>
+                ONE. Sad Face.
+                <i class="fa fa-star" aria-hidden="true"></i>
+              <%}%>
       </div>
     </div>
   </section>
@@ -38,7 +58,7 @@
 
             <input class="star star-1" type="radio" id="star1" name="rating" value="1"/>
             <label  class="star star-1" for="star1"></label>
-            
+
           </fieldset>
       </div>
     </div>
