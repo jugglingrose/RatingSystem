@@ -4,30 +4,34 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-12">
-          <h2>Reviews</h2>
+          <h2>Rating</h2>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <p> <%= reviewAVG %> Stars<p>
             <p> <% if (reviewAVG === 5){ %>
-               FIVE. Awesome!
-               
+               <i class="fa fa-star" aria-hidden="true"></i>
+               <i class="fa fa-star" aria-hidden="true"></i>
+               <i class="fa fa-star" aria-hidden="true"></i>
+               <i class="fa fa-star" aria-hidden="true"></i>
+               <i class="fa fa-star" aria-hidden="true"></i>
               <%}
               else if (reviewAVG ===4){ %>
-                FOUR
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
               <%}
-
               else if (reviewAVG === 3){ %>
-                THREE
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
               <%}
-
               else if (reviewAVG === 2){%>
-                TWO
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
               <%}
-
               else{%>
-                ONE. Sad Face.
                 <i class="fa fa-star" aria-hidden="true"></i>
               <%}%>
       </div>

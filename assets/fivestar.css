@@ -32,3 +32,9 @@ input.star:hover ~ label.star:before{
   color: #FD4;
   content: '\f005';
 }
+
+i.fa-star{
+  color: #FD4;
+  padding: 2px;
+  font-size: 20px;
+}
