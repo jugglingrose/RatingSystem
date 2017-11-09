@@ -28,9 +28,14 @@ app.get('/', function(req,res){
       if (err) throw err;
       console.log(result);
       //round the avg//
-      var total = Math.round(result[0].total);
-      //render the avg to show on client side//
-      res.render('index',{reviewAVG: total});
+      if(result.length !== 0){
+        var total = Math.round(result[0].total);
+        //render the avg to show on client side//
+        res.render('index',{reviewAVG: total});
+      }
+      else{
+        res.render('index',{reviewAVG: undefined});
+      }
     });
 });
 
@@ -49,7 +54,7 @@ MongoClient.connect(config.mongo_uri, function(err, database){
   if (err) throw err;
   console.log('succesfully connected to database');
   db = database;
-  app.listen(3000, function(){
+  app.listen(8080, function(){
     console.log('successfully started the server');
   });
 });
