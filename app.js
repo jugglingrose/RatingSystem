@@ -14,7 +14,7 @@ var db = null;
 
 
 //access mongo db password//
-var config = require('./config');
+var config = require('./config.secret');
 
 app.set('view engine', 'ejs');
 app.use(express.static('assets'));
