@@ -16,13 +16,17 @@ var db = null;
 //access mongo db password//
 var config = require('./config.secret');
 
+const expressMongoDb = require('express-mongo-db');
+app.use(expressMongoDb(config.mongo_url));
+
+
 app.set('view engine', 'ejs');
 app.use(express.static('assets'));
 
 
 app.get('/', function(req,res){
   //get the avg of all of the reviews in the DB//
-  db.collection("starRate").aggregate([
+  req.db.collection("starRate").aggregate([
     {$group: {_id:null, total:{$avg:"$rating"}}}],
     function(err,result) {
       if (err) throw err;
@@ -43,18 +47,17 @@ app.post('/', function(req,res){
   console.log("post to database called");
   var rating = req.body.rating;
   rating = parseInt(rating);
-  db.collection("starRate").insertOne({'rating': rating}, function(err, result){
+  req.db.collection("starRate").insertOne({'rating': rating}, function(err, result){
     if (err) throw err;
     console.log("1 review inserted");
     res.redirect('/');
   });
 });
 
-MongoClient.connect(config.mongo_uri, function(err, database){
-  if (err) throw err;
-  console.log('succesfully connected to database');
-  db = database;
-  app.listen(8080, function(){
-    console.log('successfully started the server');
-  });
-});
+if (require.main === module) {
+    app.listen(config.port, function() {
+        console.log("Local server started");
+    });
+}
+
+module.exports = app;
