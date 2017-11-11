@@ -6,20 +6,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./app.js",
-    "lambda-deploy" : "zip -r -X /tmp/lambda.zip . && aws lambda update-function-code --function-name $npm_package_config_lambda_name --zip-file fileb:///tmp/lambda.zip --publish"
-
+    "lambda-deploy": "zip -r -X /tmp/lambda.zip . && aws lambda update-function-code --function-name $npm_package_config_lambda_name --zip-file fileb:///tmp/lambda.zip --publish"
   },
   "author": "corean",
   "license": "ISC",
   "dependencies": {
+    "aws-serverless-express": "^3.0.2",
     "body-parser": "^1.18.0",
     "ejs": "^2.5.7",
     "express": "^4.15.4",
     "express-mongo-db": "^2.0.3",
     "mongodb": "^2.2.31"
   },
-  "config" : {
-    "lambda-name" : "corean-fivestar"
+  "config": {
+    "lambda-name": "corean-fivestar"
   }
-
 }
